@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  sandbox:
+#    image: tqtezos/flextesa:20210930 #9.1
+    image: tqtezos/flextesa:20200925 #7.3?
+      #    ports:
+      # expose sandbox on localhost if needed
+      #      - "127.0.0.1:20000:20000"
+    environment:
+      block_time: 2
+      flextesa_node_cors_origin: "*"
+#    command: flobox start --keep-root #9.1
+    command: /usr/bin/carthagebox start --keep-root #7.3
+    restart: always
+
+  devenv:
+    build:
+      context: ./ocaml_tezos_devenv
+      dockerfile: Dockerfile
+      args:
+        version: 9.1
+          #        version: 7.3
+    depends_on: 
+      - sandbox
+    volumes:
+      - /home/julian/:/root/work/
+    restart: always
