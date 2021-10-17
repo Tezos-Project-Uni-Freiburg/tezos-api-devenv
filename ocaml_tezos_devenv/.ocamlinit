@@ -1,0 +1,15 @@
+#use "topfind";;
+#thread;;
+#print_length 10000;;
+open SyncAPIV1
+open Api
+open Api_error
+open Answer
+open Result
+open Lwt_main;;
+set_port 20000;;
+set_host "sandbox";;
+set_basedir "/root/.tezos-client";;
+let alice = get_pukh_from_hash "tz1VSUr8wwNhLAzempoch5d6hLRiTh8Cjcjb";;
+let cont = get_contract "demo";;
+let cont_t = cont >>=? fun cont -> make_typed_contract cont Tstring
