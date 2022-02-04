@@ -2,24 +2,20 @@ version: "3"
 
 services:
   sandbox:
-    image: tqtezos/flextesa:20210602
-      #    ports:
-      # expose sandbox on localhost if needed
-      #      - "127.0.0.1:20000:20000"
+#    image: tqtezos/flextesa:20210602
+    image: tqtezos/flextesa:20211206
     environment:
       block_time: 2
       flextesa_node_cors_origin: "*"
-    command: /usr/bin/flobox start --keep-root
+    command: /usr/bin/hangzbox start --keep-root
     restart: always
 
   devenv:
-    build:
-      context: ./ocaml_tezos_devenv
-      dockerfile: Dockerfile
-      args:
-        version: 9.1
+    image: devenv:v11.0
     depends_on: 
       - sandbox
     volumes:
-      - /home/julian/:/root/work/
+      - /home/julian/IdeaProjects/tezos-api/:/root/work/IdeaProjects/tezos-api/
+      - /home/julian/Documents/Studium/Uni/Bachelorprojekt/test_proj/:/root/work/Documents/Studium/Uni/Bachelorprojekt/test_proj/
+      - /home/julian/Documents/Studium/Uni/Bachelorprojekt/demo_contracts/:/root/work/Documents/Studium/Uni/Bachelorprojekt/demo_contracts/
     restart: always

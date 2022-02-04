@@ -10,6 +10,10 @@ open Lwt_main;;
 set_port 20000;;
 set_host "sandbox";;
 set_basedir "/root/.tezos-client";;
+
+let execute a =
+   get_ok (Lwt_main.run a);;
+
 let alice = get_pukh_from_hash "tz1VSUr8wwNhLAzempoch5d6hLRiTh8Cjcjb";;
 let cont = get_contract "demo";;
 let cont_t = cont >>=? fun cont -> make_typed_contract cont Tstring
