@@ -18,6 +18,6 @@ RUN mkdir -p /root/.config/fish
 RUN ["bash", "-c", "echo 'eval (opam env)' > /root/.config/fish/config.fish"]
 RUN mkdir /root/work
 WORKDIR /root/work/Documents/Studium/Uni/Bachelorprojekt/test_proj/newer/
-COPY test.sh /root/test.sh
+COPY ./test.sh /root/test.sh
 COPY .ocamlinit /root/.ocamlinit
 CMD ["bash", "-c", "/root/test.sh"] 

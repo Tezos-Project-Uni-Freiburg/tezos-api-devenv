@@ -11,11 +11,17 @@ services:
     restart: always
 
   devenv:
-    image: devenv:v11.0
+    build:
+      context: ./ocaml_tezos_devenv
+      dockerfile: ./Dockerfile
+      args:
+        version: "11.0"
     depends_on: 
       - sandbox
     volumes:
+      # Path of the project adjust as needed
       - /home/julian/IdeaProjects/tezos-api/:/root/work/IdeaProjects/tezos-api/
+      # additional mounts (here test project and demo contracts) adjust or delete as needed
       - /home/julian/Documents/Studium/Uni/Bachelorprojekt/test_proj/:/root/work/Documents/Studium/Uni/Bachelorprojekt/test_proj/
       - /home/julian/Documents/Studium/Uni/Bachelorprojekt/demo_contracts/:/root/work/Documents/Studium/Uni/Bachelorprojekt/demo_contracts/
     restart: always
