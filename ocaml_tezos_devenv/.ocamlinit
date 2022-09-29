@@ -1,19 +1,26 @@
 #use "topfind";;
 #thread;;
 #print_length 10000;;
+(* load library *)
 open SyncAPIV1
 open Api
 open Api_error
+(* load other required libs *)
 open Answer
 open Result
 open Lwt_main;;
+(* configure library *)
 set_port 20000;;
 set_host "sandbox";;
 set_basedir "/root/.tezos-client";;
 
+(* helper to unpack Answer.t *)
 let execute a =
    get_ok (Lwt_main.run a);;
 
-let alice = get_pukh_from_hash "tz1VSUr8wwNhLAzempoch5d6hLRiTh8Cjcjb";;
-let cont = get_contract "demo";;
-let cont_t = cont >>=? fun cont -> make_typed_contract cont Tstring
+(* define some values to work *)
+let alice = execute (get_pukh_from_hash "tz1VSUr8wwNhLAzempoch5d6hLRiTh8Cjcjb");;
+let bob = execute (get_pukh_from_hash "tz1aSkwEot3L2kmUvcoxzjMomb9mvBNuzFK6");;T
+let demo_cont = execute (get_contract "demo");;
+let votes_cont = execute (get_contract "votes");;
+(* let demo_cont_t = execute (demo_cont >>=? fun cont -> make_typed_contract cont Tstring);; *)
