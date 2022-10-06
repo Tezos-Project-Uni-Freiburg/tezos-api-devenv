@@ -14,8 +14,6 @@ RUN eval $(opam env) && opam install -y dune utop ppx_jane alcotest alcotest-lwt
 RUN ["bash", "-c", "echo $(opam env) >> /root/.bashrc"]
 RUN mkdir -p /root/.config/fish
 RUN ["bash", "-c", "echo 'eval (opam env)' > /root/.config/fish/config.fish"]
-RUN mkdir /root/work
-WORKDIR /root/work/Documents/Studium/Uni/Bachelorprojekt/test_proj/newer/
 COPY ./test.sh /root/test.sh
 COPY .ocamlinit /root/.ocamlinit
 CMD ["bash", "-c", "/root/test.sh"] 
