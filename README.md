@@ -1,6 +1,6 @@
 # Goal
 This project is a development environment for working with the tezos blockchain and its ocaml api.
-It was built to work with [tezos-api](https://github.com/Qup42/tezos-api).
+It was built to work with [tezos-api](https://github.com/Tezos-Project-Uni-Freiburg/tezos-api).
 It includes:
 1. local Tezos Blockchain sandbox
 2. development environment with tezos libraries and dune installed 
